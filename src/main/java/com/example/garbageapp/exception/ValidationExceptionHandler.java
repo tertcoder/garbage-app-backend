@@ -19,7 +19,7 @@ public class ValidationExceptionHandler {
         Map<String, Object> errorResponse = new HashMap<>();
         Map<String, String> errors = new HashMap<>();
         
-        ex.getBindingResult().getAllErrors().forEach(error -> {
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
@@ -27,5 +27,10 @@ public class ValidationExceptionHandler {
         
         errorResponse.put("timestamp", LocalDateTime.now());
         errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
-        errorResponse.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
-        errorResponse.put("message", "Validation
+        errorResponse.put("error", "Validation Error");
+        errorResponse.put("message", "Validation failed");
+        errorResponse.put("errors", errors);
+        
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+}
