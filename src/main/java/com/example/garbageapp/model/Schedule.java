@@ -25,6 +25,8 @@ public class Schedule {
     
     private ScheduleType type;
     
+    private String notes;
+    
     @CreatedDate
     private LocalDateTime createdAt;
     
