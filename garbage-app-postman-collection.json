@@ -1,0 +1,438 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Garbage Collection Management System",
+		"description": "API collection for the Garbage Collection Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"securePassword123\",\n    \"phoneNumber\": \"1234567890\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register"]
+						}
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"securePassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Areas",
+			"item": [
+				{
+					"name": "Create Area",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Downtown Area\",\n    \"zone\": \"Zone A\",\n    \"pickupDays\": [\"MONDAY\", \"WEDNESDAY\", \"FRIDAY\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/areas",
+							"host": ["{{baseUrl}}"],
+							"path": ["areas"]
+						}
+					}
+				},
+				{
+					"name": "Get Area by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/areas/{{areaId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["areas", "{{areaId}}"]
+						}
+					}
+				},
+				{
+					"name": "Get All Areas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/areas?page=0&size=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["areas"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Area",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Downtown Area\",\n    \"zone\": \"Zone A\",\n    \"pickupDays\": [\"MONDAY\", \"WEDNESDAY\", \"FRIDAY\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/areas/{{areaId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["areas", "{{areaId}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Area",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/areas/{{areaId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["areas", "{{areaId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Schedules",
+			"item": [
+				{
+					"name": "Create Schedule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"areaId\": \"{{areaId}}\",\n    \"type\": \"REGULAR\",\n    \"pickupDate\": \"2024-03-20T10:00:00\",\n    \"notes\": \"Regular weekly pickup\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/schedules",
+							"host": ["{{baseUrl}}"],
+							"path": ["schedules"]
+						}
+					}
+				},
+				{
+					"name": "Get Schedule by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/schedules/{{scheduleId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["schedules", "{{scheduleId}}"]
+						}
+					}
+				},
+				{
+					"name": "Get All Schedules",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/schedules?page=0&size=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["schedules"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Filter Schedules",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"areaId\": \"{{areaId}}\",\n    \"type\": \"REGULAR\",\n    \"startDate\": \"2024-03-20\",\n    \"endDate\": \"2024-03-27\",\n    \"page\": 0,\n    \"size\": 10\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/schedules/filter",
+							"host": ["{{baseUrl}}"],
+							"path": ["schedules", "filter"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Special Requests",
+			"item": [
+				{
+					"name": "Create Special Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"areaId\": \"{{areaId}}\",\n    \"requestDate\": \"2024-03-20T10:00:00\",\n    \"description\": \"Bulk furniture disposal\",\n    \"type\": \"BULK\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/special-requests",
+							"host": ["{{baseUrl}}"],
+							"path": ["special-requests"]
+						}
+					}
+				},
+				{
+					"name": "Get User's Requests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/special-requests/user?page=0&size=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["special-requests", "user"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Request Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"APPROVED\",\n    \"adminNotes\": \"Request approved for pickup\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/special-requests/{{requestId}}/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["special-requests", "{{requestId}}", "status"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Get Admin Dashboard Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/dashboard/admin/stats",
+							"host": ["{{baseUrl}}"],
+							"path": ["dashboard", "admin", "stats"]
+						}
+					}
+				},
+				{
+					"name": "Get User Dashboard Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/dashboard/user/stats",
+							"host": ["{{baseUrl}}"],
+							"path": ["dashboard", "user", "stats"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Save token from login response",
+					"if (pm.info.requestName === \"Login\") {",
+					"    var jsonData = pm.response.json();",
+					"    if (jsonData.success && jsonData.data.token) {",
+					"        pm.environment.set(\"token\", jsonData.data.token);",
+					"    }",
+					"}",
+					"",
+					"// Save IDs from responses",
+					"if (pm.response.json().success && pm.response.json().data) {",
+					"    var data = pm.response.json().data;",
+					"    if (data.id) {",
+					"        if (pm.info.requestName.includes(\"Area\")) {",
+					"            pm.environment.set(\"areaId\", data.id);",
+					"        } else if (pm.info.requestName.includes(\"Schedule\")) {",
+					"            pm.environment.set(\"scheduleId\", data.id);",
+					"        } else if (pm.info.requestName.includes(\"Request\")) {",
+					"            pm.environment.set(\"requestId\", data.id);",
+					"        }",
+					"    }",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api/v1",
+			"type": "string"
+		}
+	]
+} 
