@@ -26,5 +26,7 @@ public class ScheduleDTO {
     @NotNull(message = "Schedule type is required")
     private Schedule.ScheduleType type;
     
+    private String notes;
+    
     private String areaName; // Optional field for frontend display
 }
